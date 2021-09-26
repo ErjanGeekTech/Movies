@@ -15,7 +15,7 @@
        app:spanCount="2"
        tools:listitem="@layout/item_movie"
        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-       android:layout_width="0dp"
-       android:layout_height="0dp"/>
+       android:layout_width="@dimen/detail_0"
+       android:layout_height="@dimen/detail_0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

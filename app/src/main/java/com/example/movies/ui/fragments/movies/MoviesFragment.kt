@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.movies.R
 import com.example.movies.base.BaseFragment
+import com.example.movies.data.network.NetworkConnectionLiveData
 import com.example.movies.databinding.FragmentMoviesBinding
 import com.example.movies.ui.adapters.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,14 +20,21 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MovieViewModel>(
     private val adapter = MovieAdapter(this::openDetailMovie)
 
     override fun setupViews() {
-        viewModel.getMovies()
         binding.rv.adapter = adapter
     }
 
     override fun setupRequests() {
-        viewModel.moviesList.observe(viewLifecycleOwner, {
-            adapter.addList(it)
-        })
+        NetworkConnectionLiveData(context ?: return)
+            .observe(viewLifecycleOwner, { isConnected ->
+                if (isConnected) {
+                    viewModel.getMovies()
+                    viewModel.moviesList.observe(viewLifecycleOwner, {
+                        adapter.addList(it)
+                    })
+                } else {
+                    findNavController().navigate(R.id.action_moviesFragment_to_isConnectedFragment)
+                }
+            })
     }
 
     private fun openDetailMovie(id: Int) {

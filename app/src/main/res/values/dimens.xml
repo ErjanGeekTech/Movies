@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="detail_16_txt">16sp</dimen>
+    <dimen name="detail_30dp">30dp</dimen>
+    <dimen name="detail_10dp">10dp</dimen>
+    <dimen name="detail_70">70dp</dimen>
+    <dimen name="detail_0">0dp</dimen>
+    <dimen name="detail_40">40dp</dimen>
+    <dimen name="detail_6">6dp</dimen>
+    <dimen name="detail_txt_size_12">12sp</dimen>
+    <dimen name="detail_12">12dp</dimen>
+    <dimen name="detail_padding_start_txt">2dp</dimen>
+</resources>

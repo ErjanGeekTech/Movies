@@ -2,4 +2,11 @@
     <string name="app_name">Movies</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_movie">Detail movie</string>
+    <string name="status">Status:</string>
+    <string name="detail_gengers">Gengers:</string>
+    <string name="detail_type">Type:</string>
+    <string name="detail_language">Language:</string>
+    <string name="detail_ended">Ended:</string>
+    <string name="detail_raiting">4.5</string>
 </resources>
