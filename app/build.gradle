@@ -101,4 +101,6 @@ dependencies {
     def lottie_version = "4.1.0"
 
     implementation "com.airbnb.android:lottie:$lottie_version"
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 }

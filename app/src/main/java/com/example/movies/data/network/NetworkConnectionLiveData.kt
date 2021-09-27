@@ -11,9 +11,8 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
+import java.io.IOException
 
 
 class NetworkConnectionLiveData(val context: Context) : LiveData<Boolean>() {
@@ -23,7 +22,6 @@ class NetworkConnectionLiveData(val context: Context) : LiveData<Boolean>() {
 
     private lateinit var connectivityManagerCallback: ConnectivityManager.NetworkCallback
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActive() {
         super.onActive()
         updateConnection()
@@ -68,11 +66,11 @@ class NetworkConnectionLiveData(val context: Context) : LiveData<Boolean>() {
 
             connectivityManagerCallback = object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
-                    postValue(true)
+                    postValue(isOnline())
                 }
 
                 override fun onLost(network: Network) {
-                    postValue(false)
+                    postValue(isOnline())
                 }
             }
             return connectivityManagerCallback
@@ -82,39 +80,27 @@ class NetworkConnectionLiveData(val context: Context) : LiveData<Boolean>() {
     }
 
     private val networkReceiver = object : BroadcastReceiver() {
-        @RequiresApi(Build.VERSION_CODES.M)
         override fun onReceive(context: Context, intent: Intent) {
             updateConnection()
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun updateConnection() {
         postValue(isOnline())
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     fun isOnline(): Boolean {
-        val connectivityManager =
-            context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities =
-            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
-            when {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
-                    return true
-                }
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
-                    return true
-                }
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
-                    return true
-                }
-            }
+        val runtime = Runtime.getRuntime()
+        try {
+            val ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8")
+            val exitValue = ipProcess.waitFor()
+            return exitValue == 0
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
         }
         return false
     }
 }
+

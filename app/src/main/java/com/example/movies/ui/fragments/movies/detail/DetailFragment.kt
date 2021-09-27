@@ -6,13 +6,13 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.example.movies.App
 import com.example.movies.R
 import com.example.movies.base.BaseFragment
 import com.example.movies.data.network.NetworkConnectionLiveData
 import com.example.movies.databinding.FragmentDetailBinding
 import com.example.movies.ui.fragments.movies.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONObject
 
 
 @AndroidEntryPoint

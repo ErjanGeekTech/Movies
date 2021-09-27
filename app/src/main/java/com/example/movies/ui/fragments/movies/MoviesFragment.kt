@@ -10,6 +10,7 @@ import com.example.movies.databinding.FragmentMoviesBinding
 import com.example.movies.ui.adapters.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MoviesFragment : BaseFragment<FragmentMoviesBinding, MovieViewModel>(
     R.layout.fragment_movies
@@ -45,3 +46,4 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MovieViewModel>(
         )
     }
 }
+

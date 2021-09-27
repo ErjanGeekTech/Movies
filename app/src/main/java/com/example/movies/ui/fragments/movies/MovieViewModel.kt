@@ -31,5 +31,4 @@ class MovieViewModel @Inject constructor(private val service: MovieApi) : BaseVi
             }
         }
     }
-
 }
