@@ -8,7 +8,10 @@ import com.example.movies.base.BaseFragment
 import com.example.movies.base.BaseViewModel
 import com.example.movies.data.network.NetworkConnectionLiveData
 import com.example.movies.databinding.FragmentIsConnectedBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class IsConnectedFragment : BaseFragment<FragmentIsConnectedBinding, BaseViewModel>(
     R.layout.fragment_is_connected
 ) {

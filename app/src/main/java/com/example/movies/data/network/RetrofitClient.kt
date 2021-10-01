@@ -13,7 +13,7 @@ class RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun provideMoviesApiService(): MovieApi{
+    fun provideMoviesApiService(): MovieApi {
         return retrofit.create(MovieApi::class.java)
     }
 

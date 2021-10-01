@@ -18,5 +18,16 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/not_inertnet_connect" />
 
+    <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="20dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/txt_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

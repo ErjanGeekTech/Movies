@@ -1,28 +1,32 @@
 package com.example.movies.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Movie(
-    val summary: String = "",
+    @PrimaryKey
+    val id: Int,
+    val summary: String,
     val image: Image,
-    val averageRuntime: Int = 0,
+    val averageRuntime: Int,
     @SerializedName("_links")
     val links: Links,
-    val premiered: String = "",
+    val premiered: String,
     val rating: Rating,
-    val runtime: Int = 0,
-    val weight: Int = 0,
-    val language: String = "",
-    val type: String = "",
-    val url: String = "",
-    val officialSite: String = "",
-    val network: Network,
+    val runtime: Int,
+    val weight: Int,
+    val language: String,
+    val type: String,
+    val url: String,
+    val officialSite: String?,
+    val network: Network?,
+    val ended: String?,
     val schedule: Schedule,
-    val genres: List<String>? = null,
-    val name: String = "",
-    val ended: String = "",
-    val id: Int = 0,
+    val genres: List<String>,
+    val name: String,
     val externals: Externals,
-    val updated: Int = 0,
-    val status: String = ""
+    val updated: Int,
+    val status: String
 )

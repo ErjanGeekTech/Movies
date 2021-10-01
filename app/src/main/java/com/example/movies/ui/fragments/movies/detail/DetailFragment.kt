@@ -6,7 +6,6 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.example.movies.App
 import com.example.movies.R
 import com.example.movies.base.BaseFragment
 import com.example.movies.data.network.NetworkConnectionLiveData
@@ -47,7 +46,6 @@ class DetailFragment :
                 }
                 detailStatus.text = it.status
                 detailGengers.text = it.genres.toString()
-
                 desc.text = it.summary.replace("[^A-Za-z0-9 ]".toRegex(), "")
                 detailLanguage.text = it.language
                 detailEnded.text = it.ended

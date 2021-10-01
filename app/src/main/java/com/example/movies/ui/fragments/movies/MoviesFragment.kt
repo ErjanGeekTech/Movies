@@ -18,6 +18,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MovieViewModel>(
 
     override val binding by viewBinding(FragmentMoviesBinding::bind)
     override val viewModel: MovieViewModel by activityViewModels()
+
     private val adapter = MovieAdapter(this::openDetailMovie)
 
     override fun setupViews() {
@@ -28,12 +29,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MovieViewModel>(
         NetworkConnectionLiveData(context ?: return)
             .observe(viewLifecycleOwner, { isConnected ->
                 if (isConnected) {
-                    viewModel.getMovies()
-                    viewModel.moviesList.observe(viewLifecycleOwner, {
-                        adapter.addList(it)
-                    })
+                    viewModel.fetchMovies()
                 } else {
-                    findNavController().navigate(R.id.action_moviesFragment_to_isConnectedFragment)
+                    viewModel.getMovies()
                 }
             })
     }
@@ -44,6 +42,12 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MovieViewModel>(
                 id
             )
         )
+    }
+
+    override fun setupObserves() {
+        viewModel.moviesList.observe(viewLifecycleOwner, {
+            adapter.addList(it)
+        })
     }
 }
 
